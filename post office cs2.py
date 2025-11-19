@@ -21,16 +21,30 @@ def main():
     '''
     data = input('what is your data')
     data = data.split(',')
-    length = data[0]
-    height = data[1]
-    thickness = data[2]
-    zip_1 = data[3]
-    zip_2 = data[4]
+    length = float (data[0])
+    height = float(data[1])
+    thickness = float(data[2])
+    zip_1 = int(data[3])
+    zip_2 = int(data[4])
+
+    print ('the variable length is' + str(length))
+    print ('the variable height is' + str(height))
+    print ('the variable thickness is' + str(thickness))
+    print ('the variable zip_1 is' + str(zip_1))
+    print ('the variable zip_2 is' + str(zip_2))
+    
+
     zone_from = zone(zip_1)
     zone_to = zone(zip_2) 
 
     total_distance = zone_to - zone_from
-    post_type = get_mailtype(length,height,thickness)
+    print(total_distance)
+
+    type = get_mailtype(length,height,thickness)
+
+    cost = get_cost( type, total_distance)
+
+    print(cost)
 
 def zone(zip):
     '''
@@ -38,6 +52,7 @@ def zone(zip):
     if zip is less and equal to length with and height return 
     do same thing for all other zipcodes and return each after
     '''
+    output = 0 
     if zip >= 1 and zip <= 6999:
         return 1 
     elif zip >= 7000 and zip <= 19999 :
@@ -61,7 +76,7 @@ def get_mailtype(l,h,w):
     return post type to user 
     '''
     post_type = ''
-    package_area = l + 2(w+h) 
+    package_area = l + 2*(w+h) 
 
     if l > 3.5 and l < 4.25 and h > 3.5 and  h < 6 and w > .007 and w <.016:
         post_type = ('postcard')
@@ -81,9 +96,15 @@ def get_mailtype(l,h,w):
 
 def get_cost(post_type,distance): 
     '''
-    find post type for each and calculate the cost by already given numbers and multiplying by the distance 
-    return total cost for package from distance and zip code to user to figure out total cost 
+   function: get_cost
+   description: calculate cost on zones and mail type
+   args: 
+   post_type (str): type of mail 
+   zones(int): zone diff
+    print ('the variable length is' + str(length))
+   returns: float: shipping cost 
     '''
+    get_cost 
     if post_type == 'postcard': 
         cost = .2 + .03 * distance
     elif post_type == 'large post card': 
