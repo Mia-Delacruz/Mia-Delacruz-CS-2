@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)file:///C:/Users/mdelacruz27/Desktop/post_office%20website%20java%20script%20%20CS2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to UPS</title>
+  <script>
+
+
+    
+    //function zip_code(zip)
+    //{ set ouput equal to zero 
+    // same from old code insert zip code function and change the colon, elif, and ands to & too fit into java script code
+    //this code allows the computer to figure out the distance of each post type in zip codes
+    
+
+      function zip_code(zip)
+    
+    {
+
+      output = 0 
+
+      if (zip >= 1 && zip <= 6999) 
+      {
+          return 1 ;
+      }
+      else if (zip >= 7000 && zip <= 19999)
+      {
+          return 2 ;
+      }
+      else if (zip >= 20000 && zip <= 35999)
+      {
+          return 3 ;
+      }
+      else if (zip >= 36000 && zip <= 62999)
+      {
+          return 4 ;
+      }
+      else if (zip >= 36000 && zip <= 84999)
+      {
+          return 5 ;
+      }
+      else if (zip >= 85000 && zip <= 99999)
+      {
+          return 6 ;
+      }
+    }
+    
+//use package area forumla from old code to calculate the total area when entered data 
+//same of zip code enter old code of mailtype and make adjustments to fit into java scirpt code
+//return type at the end 
+//this function finds based on numbers what mailtype it it
+
+    function get_mailtype(l,h,w)
+    {
+    
+    package_area = l + 2*(w+h);
+
+    if ( (l >= 3.5 && l <= 4.25) && (h >= 3.5 &&  h <= 6) && (w >= .007 && w <=.016))
+    {
+         type = 'postcard';
+          return type;
+    }
+    else if ( (l > 4.25 && l < 6) && (h > 6 &&  h < 11.5) && (w >= .007 && w <=.015))
+    {
+       type = 'large post card';
+         return type;
+    }
+    else if ( (l >= 3.5 && l <= 6.125) && (h >= 5 && h <= 11.5) && (w > .016 && w <.25))
+    {
+          type = 'envelope';
+           return type;
+    }
+    else if ( (l > 6.125 && l < 24) && (h > 11 &&  h < 18) && (w > .25 && w <.5))
+    {
+        type = 'large envelope';
+          return type;
+    }
+    else if (package_area<=84)
+    {
+        type = 'package';
+          return type;
+    }
+    else if( package_area > 84 && package_area < 130)
+    {
+         type = 'large package';
+          return type;
+    }
+    else
+    {
+         type = 'unmailable';
+          return type;
+    }
+    
+     }//close zip function
+     
+    // This function reads two input values, adds them, and displays the result.
+     // Get values from the input fields
+     //insert l,h,w,zip 1,zip 2 into getElementbyID, parsefloat and parseint
+     //rest ofc the code is mainly from old post office code and edited to fit java giving computer details on how to calculate inserted information 
+    function main() {
+     
+      let length = document.getElementById("length").value;
+      let height = document.getElementById("height").value;
+      let thickness = document.getElementById("thickness").value;
+      let zip_1 = document.getElementById("zip_1").value;
+      let zip_2 = document.getElementById("zip_2").value;
+
+      length = parseFloat(length);
+      height = parseFloat(height);
+      thickness = parseFloat(thickness);
+
+      zip_1 = parseInt(zip_1);
+      zip_2 = parseInt(zip_2);
+      console.log(get_mailtype(length, height, thickness))
+    
+      post_type = get_mailtype(length, height, thickness)
+      console.log(post_type);
+      // Display the result inside the <p> tag
+
+      to_zip = zip_code(zip_1);
+      from_zip = zip_code(zip_1);
+
+     
+
+      to_zip = zip_code(zip_1);
+      from_zip = zip_code(zip_2);
+      distance = Math.abs(from_zip - to_zip);
+      console.log (distance);
+      sum = get_cost(post_type, distance);
+      console.log(sum);
+      
+      document.getElementById("result").innerText = "$Cost is: " + sum 
+      //console.log('type is' + type);
+      }
+
+    function get_cost (post_type, distance) 
+    //insert of get cost code and edit it to fit java script 
+    //make sure there are no colons and return each different post type 
+    //this code does math from mailtype and distance to give user a cost at the end 
+
+    {
+    
+
+    if (post_type == 'postcard')
+    {
+        return .2 + .03 * distance
+    }
+    else if (post_type == 'large post card') 
+    {
+        return  .37 + .03 * distance
+    }
+    else if (post_type == 'envelope')
+    {
+       return .37 + .04 * distance
+    }
+    else if (post_type == 'large envelope')
+    {
+       return  .60 + .05 * distance
+    }
+    else if (post_type == 'package')
+    {
+       return  2.95 + .25 * distance
+    }
+    else if (post_type == 'large package')
+    {
+        return 3.95 + .35 * distance
+    }
+  
+
+
+    }
+    //style allows suer to change the style of the code by including a background 
+    // save imagine as address and paste next to url 
+  </script>
+  <style>
+  body {
+    background-image: url('https://kailuatownhi.com/wp-content/uploads/2021/09/ups.jpg');
+  
+  }
+  </style>
+</head>
+<body>
+  <h2> Welcome to UPS</h2>
+
+  <!-- Input fields -->
+  <input type="number" id="length" placeholder="Enter length number"> <br>
+  <input type="number" id="height" placeholder="Enter height number"> <br>
+  <input type="number" id="thickness" placeholder="Enter thickness number"> <br>
+  <input type="number" id="zip_1" placeholder="Enter zip_1 number"> <br>
+  <input type="number" id="zip_2" placeholder="Enter zip_2 number"> <br>
+
+  <!-- Button that calls the function -->
+  <button onclick="main()">Get Cost!</button>
+
+    
+  <!-- Area to display the result -->
+  <p id="result"></p>
+
+</body></html>
