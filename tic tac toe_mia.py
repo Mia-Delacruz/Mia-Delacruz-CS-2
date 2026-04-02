@@ -19,7 +19,7 @@ def print_board(board):
     Description: returns board to play TTT 
     '''
     print(f'''  1   2   3
-1 {board[0][0]} | {board[0][1]} |  {board[0][2]}   
+1 {board[0][0]} | {board[0][1]} | {board[0][2]}   
   ---------
 2 {board[1][0]} | {board[1][1]} | {board[1][2]}
   ---------
@@ -61,13 +61,21 @@ def check_winner(board, player):
     wins = [
             
     ]
-    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:  
         return True
-    elif board[0][0] == player and board[1][0] == player and board[2][0] == player:
+    elif board[2][0] == player and board[1][1] == player and board[0][2] == player: 
         return True
-    elif board [0][1] == player and board [2][1] == player and board [0][2] == player: 
+    elif board [0][0] == player and board [0][1] == player and board [0][2] == player: 
         return True 
-    elif board [1][2] == player and board [2][2] == player and board [2][0] == player: 
+    elif board [1][0] == player and board [1][1] == player and board [1][2] == player: 
+        return True 
+    elif board[2][0] == player and board[2][1] == player and board[2][2] == player:  
+        return True
+    elif board[0][0] == player and board[1][0] == player and board[2][0] == player: 
+        return True
+    elif board [0][1] == player and board [1][1] == player and board [2][1] == player: 
+        return True 
+    elif board [0][2] == player and board [1][2] == player and board [2][2] == player: 
         return True 
 
     
@@ -83,15 +91,18 @@ def is_draw(board):
     Description: if all spaces are taken displays equals a draw to user 
     '''
 
+    space_counter = 0
     status = False
 
     for row in range(3):
         for col in range(3):
             if board[row][col] == ' ':
-                status = False
-                return status
-    if status == True:
+                space_counter = space_counter + 1
+
+    print("the space counter is: " + str(space_counter))
+    if space_counter == 0:
         print("Tie")
+        status = True
     return status
 
 
@@ -130,18 +141,26 @@ def main():
         
         print_board(board)
 
-        while not is_draw(board):
+        while True:
 
-            print("110")
             make_move(board, p1_ttt)
             print_board(board)
+
+            if is_draw(board):
+                
+                break
             
             if check_winner(board, p1_ttt):
                 print(f'Player {p1_ttt} wins!')
                 break
 
+            #player
+
             make_move(board, p2_ttt)
             print_board(board)
+            if is_draw(board):
+                print("Tie")
+                break
     
             if check_winner(board, p2_ttt):
                 print(f'Player {p2_ttt} wins!')
