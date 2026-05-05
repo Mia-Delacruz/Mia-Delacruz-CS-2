@@ -21,31 +21,31 @@ def display_rows(file):
         Error: none 
 
     '''
-    next(file)
-    i = 0
+    next(file)          #initializes variable at 0 
+    i = 0      
 
     for row in file: 
         row = row.strip().split(',')
         print(row)
         i += 1
         
-        if i == 10:
+        if i == 10:      # initlazes variable at 10 then breaks off code
             break
 
 def get_survival_rate(file): 
     '''
     Args:
-        vairable(type): Displays list from row to calculate survival rate.
+        variable(type): Displays list from row to calculate survival rate.
     Returns:
         variable(type): Displays the survival rate of passengers and how many passed. 
     Raises:
         Error: none 
 
     '''
-    survived = 0 
+    survived = 0                  
     total = 0 
-    file.seek(0)
-    next(file)
+    file.seek(0)  #moves file pointer to the beginning of the file
+    next(file)    #skips the first line
 
     for line in file: 
         row = line.strip().split(',')
@@ -62,7 +62,7 @@ def get_survival_rate(file):
 def get_gender_data(file):
     '''
     Args:
-        vairable(type): displays list from the gender row of female and males.
+        variable(type): displays list from the gender row of female and males.
     Returns:
         variable(type): returns the average of female survived versus men survived on the titanic   
     Raises:
@@ -74,13 +74,13 @@ def get_gender_data(file):
     female_counter = 0
     female_survived = 0
 
-    file.seek(0)
-    next(file)
+    file.seek(0)     #moves file pointer to the beginning of the file
+    next(file)       #skips the first line
 
     for line in file:
         row = line.strip().split(',')
 
-        if row[5] == "male":
+        if row[5] == "male":                #set row 1,5 that is equal to male and female +=1 for every survived person to give data on gender survival 
             male_counter += 1
 
             if row[1] == "1":
@@ -101,7 +101,7 @@ def get_age_data(file):
     Args:
         vairable(type): uses row 6 and 1 as list to calculate 
     Returns:
-        variable(type): retrurns the average age a passenger survived or passed and probability .  
+        variable(type): returns the average age a passenger survived or passed and probability .  
     Raises:
         Error: none
     '''
@@ -122,7 +122,7 @@ def get_age_data(file):
         if row[6] == '':
             continue
 
-        if float(row[6]) > max_age:
+        if float(row[6]) > max_age:            #fill out the different age data into rows from maximum age to minimum age, use float function as data type for the numbers with decimals 
             max_age = float(row[6])
             max_passenger = row[4] + row[3]
         elif float(row[6]) < min_age:
@@ -151,7 +151,7 @@ def get_class_data(file):
         Error: none 
 
     '''
-    fares = 0
+    fares = 0              #equal all class data to zero to create variable to a known starting point before usuing it in a calculation on sheets 
     total = 0
     class1_total = 0
     class2_total = 0
@@ -163,15 +163,15 @@ def get_class_data(file):
     class2_fares = 0
     class3_fares = 0
 
-    file.seek(0)
-    next(file)
+    file.seek(0)    #moves file pointer to the beginning of the file
+    next(file)      #skips the first line of code
 
     for line in file: 
         row = line.strip().split(',')
         fares += float(row[10])
         total += 1
 
-        if row[2] == "1":
+        if row[2] == "1":                      #add class total and fares by using += to row 
             class1_total += 1
             class1_fares += float(row[10])
             
@@ -181,7 +181,7 @@ def get_class_data(file):
             class2_total += 1
             class2_fares += float(row[10])
             
-            if row[1] == "1":
+            if row[1] == "1":                   #add survived and fares by using += to row 
                 class2_survived += 1
         elif row[2] == "3":
             class3_total += 1
@@ -210,8 +210,7 @@ def main():
     '''
     Args:
         vairable(type): uses entire gender csv and titanic csv and rows to determine specfic data to user 
-    Returns:
-        variable(type): returns data from all functions above   
+    Returns: 
     Raises:
         Error: none
     '''
