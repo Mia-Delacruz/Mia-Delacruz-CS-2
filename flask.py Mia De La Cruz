@@ -1,0 +1,42 @@
+
+from flask import Flask, render_template, request  # From module flask import class Flask
+import csv
+app = Flask(__name__)    # Construct an instance of Flask class for our webapp
+
+@app.route('/')   # URL '/' to be handled by main() route handler
+def main():
+    #print(app.url_map)
+    #print('line 17')            # Print statements go to your console
+    
+    #return render_template("index.html")
+
+    fname = request.args.get("fname")
+    lname = request.args.get("lname")
+    hobbies = request.args.get("hobbies")
+    age = request.args.get("age")
+    school = request.args.get("school")
+    address = request.args.get("address")
+    contact = request.args.get("contact")
+    dob = request.args.get("dob")
+    
+
+
+    with open("personalform.csv", "a", newline="") as file:
+            writer = csv.writer(file)
+
+            writer.writerow([
+                fname,
+                lname,
+                hobbies,
+                age,
+                school,
+                address,
+                contact,
+                dob
+            ])
+
+    return render_template("mia_template.html")  # Return this string as a response to the client
+    
+
+if __name__ == '__main__':  # Script executed directly?
+    app.run(debug=True)  # Launch built-in web server and run this Flask webapp
