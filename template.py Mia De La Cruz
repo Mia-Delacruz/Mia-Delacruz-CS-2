@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+
+
+<html>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: rgb(113, 135, 198);
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 3px rgb(43, 45, 178);
+        }
+      </style>
+</head>
+<body>
+  <h2>personal form!</h2>
+</body>
+<html>
+
+<h2>please answer the questions!</h2>
+
+<form action="/" method="GET">
+
+  <label>First name:</label><br>
+  <input type="text" name="fname"><br><br>
+
+  <label>Last name:</label><br>
+  <input type="text" name="lname"><br><br>
+
+  <label>Favorite activity:</label><br>
+  <input type="text" name="hobbies"><br><br>
+
+  <label>Age:</label><br>
+  <input type="text" name="age"><br><br>
+
+  <label>School:</label><br>
+  <input type="text" name="school"><br><br>
+
+  <label>Address:</label><br>
+  <input type="text" name="address"><br><br>
+
+  <label>Email or Number:</label><br>
+  <input type="text" name="contact"><br><br>
+
+  <label>Date of Birth:</label><br>
+  <input type="text" name="dob"><br><br>
+
+  <input type="submit" value="Submit">
+
+</form>
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
+</body>
+</html>
+
